@@ -55,7 +55,7 @@ class ReviewViewSet(viewsets.ModelViewSet):
     """
 
     def list(self, request):
-        queryset = Review.objects.filter()
+        queryset = Review.objects.filter(user=request.user)
         serializer = ReviewSerializer(
             queryset, many=True, context={'request': request})
         return Response(serializer.data)
